@@ -9,9 +9,6 @@ function run_example()
         mex example_mex.cpp
     end
     
-    % Use the example interface
-    % This is the interface written specifically for the example class
-    
     % Use the standard interface
     % This interface can be used for any mex interface function using the
     % pattern:
@@ -22,11 +19,12 @@ function run_example()
     % class for each mex file.
     fprintf('Using the standard interface\n');
     obj = mex_interface(str2fun([dir '/example_mex'])); % str2fun allows us to use the full path, so the mex need not be on our path
-    inp = [3, 12, 1, 2323, 2]
-    %inp = uint64(inp);
+    %inp = [3, 12, 1, 2323, 2]
+    % initially give an array of strings to train()
+    inp = ["opt1", "opt2", "opt3"]
     
     obj.train(inp);
-    val = obj.test()
+    %val = obj.test()
     
     clear obj % Clear calls the delete method
 end
